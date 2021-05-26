@@ -1,4 +1,4 @@
-.card-home{
+.card-room{
     display: inline-flex;
     justify-content: space-between;
     width: 13rem;
@@ -13,8 +13,8 @@
         text-align: center;
       }
       &-top{
-        height: 5rem;
-        width: 5rem!important;
+        height: 6rem;
+        width: 6rem!important;
         &.loft{
           width: 3rem!important;
         }

@@ -3,6 +3,7 @@ var router = express.Router();
 var jwtValidator = require("../middlewares/jwt-validator");
 var [getHomes, getHomeById] = require("../controllers/home");
 
+
 /* GET homes listing. */
 router.get("/", async function (req, res, next) {
   const homes = await getHomes();

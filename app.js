@@ -7,6 +7,7 @@ require("dotenv").config();
 
 var usersRouter = require("./routes/users");
 var homesRouter = require("./routes/homes");
+var roomsRouter = require("./routes/rooms");
 
 var app = express();
 
@@ -20,6 +21,7 @@ connect();
 
 app.use("/api/users", usersRouter);
 app.use("/api/homes", homesRouter);
+app.use("/api/rooms", roomsRouter);
 
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "front/build/index.html"));
