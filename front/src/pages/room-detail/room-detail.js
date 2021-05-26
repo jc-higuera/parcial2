@@ -9,7 +9,23 @@ export const RoomDetail = () => {
   const { id } = useParams();
 
   useEffect(() => {
-    getRoomById(id).then((data) => setDevices(data.devices));
+    if (!navigator.onLine) {
+      if (localStorage.getItem("devices") === null)
+        setDevices([
+          {
+            desired: { value: "loading" },
+            name: "loading",
+            id: "loading",
+          },
+        ]);
+      else setDevices(JSON.parse(localStorage.getItem("devices")));
+      console.log(devices);
+    } else {
+      getRoomById(id).then((data) => {
+        setDevices(data.devices);
+        localStorage.setItem("devices", JSON.stringify(data.devices));
+      });
+    }
   }, []);
 
   return (

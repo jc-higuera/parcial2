@@ -7,7 +7,24 @@ export const HomesList = () => {
   const [homes, setHomes] = useState([]);
 
   useEffect(() => {
-    getHomes().then((data) => setHomes(data));
+    if (!navigator.onLine) {
+      if (localStorage.getItem("homes") === null)
+        setHomes([
+          {
+            type: "loading",
+            name: "loading",
+            address: "loading",
+            id: "loading",
+          },
+        ]);
+      else setHomes(JSON.parse(localStorage.getItem("homes")));
+      console.log(homes);
+    } else {
+      getHomes().then((data) => {
+        setHomes(data);
+        localStorage.setItem("homes", JSON.stringify(data));
+      });
+    }
   }, []);
 
   return (
@@ -15,7 +32,12 @@ export const HomesList = () => {
       <h1>Mis espacios</h1>
       {homes &&
         homes.map((home) => (
-          <Card type={home.type} name={home.name} address={home.address} id={home.id}></Card>
+          <Card
+            type={home.type}
+            name={home.name}
+            address={home.address}
+            id={home.id}
+          ></Card>
         ))}
     </div>
   );
