@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { getRoomById } from "../../services/utils";
 import { useParams } from "react-router";
 import "./room-detail.css";
+import { FormattedMessage } from "react-intl";
 
 export const RoomDetail = () => {
   const [devices, setDevices] = useState([]);
@@ -30,7 +31,9 @@ export const RoomDetail = () => {
 
   return (
     <div className="container home">
-      <h1>Mis Dispositivos</h1>
+      <h1>
+        <FormattedMessage id="devices"></FormattedMessage>
+      </h1>
       <table className="table">
         <thead>
           <tr>
